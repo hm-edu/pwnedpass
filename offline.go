@@ -410,7 +410,7 @@ func (od *OfflineDatabase) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 		// perform the scan
 		response := bytes.NewBuffer(buffer[:])
-		od.Scan(start, end, hash[:], func(freq uint16) bool {
+		err := od.Scan(start, end, hash[:], func(freq uint16) bool {
 
 			// convert to capital hex bytes
 			for i, v := range hash[:] {
@@ -428,7 +428,10 @@ func (od *OfflineDatabase) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			return false
 
 		})
-
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
 	default:
 		w.WriteHeader(http.StatusNotFound)
 		return
