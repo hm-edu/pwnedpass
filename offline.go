@@ -382,7 +382,7 @@ func (od *OfflineDatabase) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			hash = sha1.Sum([]byte(pw))
 		}
 
-		od.logger.Sugar().Infof("checking password: %v", hash)
+		od.logger.Sugar().Infof("checking password: %s", hex.EncodeToString(hash[:]))
 		frequency, err := od.Pwned(hash)
 		if err != nil {
 			od.logger.Sugar().Warnf("error checking password: %v", err)
