@@ -381,7 +381,7 @@ func (od *OfflineDatabase) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			// not a hash, hash it now
 			hash = sha1.Sum([]byte(pw))
 		}
-
+		od.logger.Sugar().Infof("using database file at %p", od.file)
 		od.logger.Sugar().Infof("checking password: %s", hex.EncodeToString(hash[:]))
 		frequency, err := od.Pwned(hash)
 		if err != nil {
