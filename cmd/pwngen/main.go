@@ -108,7 +108,7 @@ func main() {
 
 	Run(sugar, dbFile)
 	cron := cron.New()
-	cron.AddFunc("@daily", func() {
+	cron.AddFunc("0 3 * * *", func() {
 		Run(sugar, dbFile)
 	})
 	cron.Start()
@@ -147,7 +147,7 @@ func Run(logger *zap.SugaredLogger, dbFile string) {
 	logger.Infof("Writing data segment...")
 	inputChan := make(chan concurrently.WorkFunction)
 	ctx := context.Background()
-	output := concurrently.Process(ctx, inputChan, &concurrently.Options{PoolSize: 30, OutChannelBuffer: 30})
+	output := concurrently.Process(ctx, inputChan, &concurrently.Options{PoolSize: 20, OutChannelBuffer: 20})
 	go func() {
 		for i := int64(0); i < int64(math.Pow(16, 5)); i++ {
 			inputChan <- loadWorker{logger, i}
