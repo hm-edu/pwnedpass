@@ -3,6 +3,7 @@ name: Docker
 on:
   push:
   pull_request:
+  merge_group:
 
 jobs: 
   docker:
@@ -50,7 +51,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: ${{ github.event_name != 'pull_request' && github.actor != 'dependabot[bot]' }}
+          push: ${{ github.event_name != 'pull_request' && github.event_name != 'merge_group' && github.actor != 'renovate[bot]'}}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
