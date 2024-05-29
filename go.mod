@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	go.uber.org/zap v1.27.0
-	golang.org/x/exp v0.0.0-20240525044651-4c93da0ed11d
+	golang.org/x/exp v0.0.0-20240529005216-23cca8864a10
 )
 
 require github.com/robfig/cron/v3 v3.0.1
