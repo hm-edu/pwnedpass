@@ -6,7 +6,7 @@ toolchain go1.23.4
 
 require (
 	go.uber.org/zap v1.27.0
-	golang.org/x/exp v0.0.0-20241217172543-b2144cdd0a67
+	golang.org/x/exp v0.0.0-20250103183323-7d7fa50e5329
 )
 
 require github.com/robfig/cron/v3 v3.0.1
