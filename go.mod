@@ -2,7 +2,7 @@ module github.com/hm-edu/pwnedpass
 
 go 1.22.0
 
-toolchain go1.23.4
+toolchain go1.23.5
 
 require (
 	go.uber.org/zap v1.27.0
