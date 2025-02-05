@@ -1,4 +1,4 @@
-FROM golang:1.23.5 
+FROM golang:1.23.6 
 WORKDIR /app
 COPY . .
 RUN go build  -o pwnd cmd/pwnd/main.go
